@@ -33,6 +33,7 @@ body{
     background-color: var(--primary-color);
     color: #fff;
 }
+
 .sidebar{
     position: fixed;
     top: 0;
