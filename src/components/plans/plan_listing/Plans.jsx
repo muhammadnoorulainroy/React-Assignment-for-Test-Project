@@ -4,7 +4,7 @@ import { deletePlanData, getPlanData } from "../../../api";
 import Loading from "../../api_loading/Loading";
 import TableData from "./TableData";
 
-export default function Plans(props) {
+export default function Plans() {
   const [planData, setPlanData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
@@ -19,15 +19,11 @@ export default function Plans(props) {
     });
   }, []);
 
-  const handleDelete = (id) => {
-    if (
-      window.confirm(
-        "Are you sure to delete the plan? This operation cannot be undo."
-      )
-    ) {
+  const handleDelete = id => {
+    if (window.confirm("Are you sure to delete the plan? This operation cannot be undo.")) {
       deletePlanData(id).then(() => {
         window.alert("Plan has been deleted successfully");
-        setPlanData(planData.filter((plan) => plan.id !== id));
+        setPlanData(planData.filter(plan => plan.id !== id));
       });
     }
   };
@@ -44,9 +40,7 @@ export default function Plans(props) {
           </div>
           <hr />
           <div className="table-responsive">
-            {loading ? (
-              <Loading />
-            ) : (
+            {loading ? <Loading /> : (
               <TableData
                 tableData={planData}
                 handleDelete={handleDelete}
